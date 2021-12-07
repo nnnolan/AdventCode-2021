@@ -1,19 +1,14 @@
-# day 1
-# what 
-
-print("Part 1 \n  ------------------------------------")
-
-
-with open("input.txt", "r") as file:
-    contents = file.read()
-    sections = contents.split("\n\n")
-    numbers = [int(num) for num in sections[0].split(",")]
-    boards_raw = sections[1:]
-    boards = []
-    for board_raw in boards_raw:
-        rows_raw = board_raw.split("\n")
-        board = []
-        for row_raw in rows_raw:
-            row = [int(num) for num in row_raw.split()]
-            board.append(row)
-        boards.append(board)
+numbers,*boards=open(r"input.txt").read().split("\n\n")
+boards = [[[*map(int,r.split())] for r in b.split("\n")] for b in boards]
+won = set()
+for num in map(int, numbers.split(",")):
+    for b,r,c in ((b,r,c)
+                  for b in set(range(len(boards)))-won
+                  for r in range(5)
+                  for c in range(5)
+                  if boards[b][r][c] == num):
+        boards[b][r][c] = -1
+        if sum(boards[b][r]) == -5 or sum(row[c] for row in boards[b]) == -5:
+            won.add(b)
+            if len(won)==1 or len(won)==len(boards):
+                print("winner", sum(sum(c for c in row if c>0) for row in boards[b])*num)

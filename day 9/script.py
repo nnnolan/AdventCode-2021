@@ -1,26 +1,31 @@
 with open('input.txt') as f:
     lines = f.read()
-
 lines = lines.strip("\n")
-
+list2 = []
+ints = 0
 
 def Convert(string):
-    list1=[]
-    list1[:0]=string
-    return list1
+    list2=[]
+    list2[:0]=string
+    return list2
 
 input = (Convert(lines))
 
-integers = 0
-print(input)
-print(len(input))
 
-for i in range(len(input)):
-    try:
-        if:
-        if input[i] < input[i+100] and input[i] < input[i-100] and input[i] < input[i-1] and input[i] < input[i+1]:
+for element in (input):
+    list2.append(element.strip("\n"))
 
-            integers = integers + (int(input[i]) + 1)
-    except:
-        pass
-print(integers)
+
+for i in range (0, 100):
+    list2.insert(i, 9)
+
+for i in range (11000, 11100):
+    list2.append(9)
+
+for i in range(100, 101100(list2)):
+        if list2[i] < list2[i+100] and list2[i] < list2[i-100] and list2[i] < list2[i-1] and list2[i] < list2[i+1]:
+            ints = ints + ((int(list2[i])) + 1)
+#     except:
+#         pass
+print(ints)
+

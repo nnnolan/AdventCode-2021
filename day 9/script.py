@@ -1,3 +1,5 @@
+import numpy as np
+
 with open('input.txt') as f:
     lines = f.read()
 lines = lines.strip("\n")
@@ -22,7 +24,7 @@ for i in range (0, 100):
 for i in range (11000, 11100):
     list2.append(9)
 
-for i in range(100, 101100(list2)):
+for i in range(100, (len(list2 - 100))):
         if list2[i] < list2[i+100] and list2[i] < list2[i-100] and list2[i] < list2[i-1] and list2[i] < list2[i+1]:
             ints = ints + ((int(list2[i])) + 1)
 #     except:

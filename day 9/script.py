@@ -1,33 +1,26 @@
-import numpy as np
+with open("input.txt") as fh:
+    lines = fh.readlines()
 
-with open('input.txt') as f:
-    lines = f.read()
-lines = lines.strip("\n")
-list2 = []
-ints = 0
+# read in the height map
+hmap = [[int(y) for y in x.strip()] for x in lines]
 
-def Convert(string):
-    list2=[]
-    list2[:0]=string
-    return list2
+# add 9's around the edges of the height map; simplifies further processing
 
-input = (Convert(lines))
+for i in range(len(hmap)):
+    hmap[i].append(9)
+    hmap[i].insert(0, 9)
 
+# add 9-rows to the top and bottom of the height map
+nines = [9] * (len(hmap[0]))
+hmap.append(nines)
+hmap.insert(0, nines)
 
-for element in (input):
-    list2.append(element.strip("\n"))
+risksum = 0
+for row in range(1, len(hmap)-1):
+    for col in range(1, len(hmap[0])-1):
+        # find the local minima
+        if hmap[row][col] < min([hmap[row+1][col],hmap[row-1][col],
+                                 hmap[row][col+1],hmap[row][col-1]]):
+            risksum += hmap[row][col] + 1 # risk = height + 1
 
-
-for i in range (0, 100):
-    list2.insert(i, 9)
-
-for i in range (11000, 11100):
-    list2.append(9)
-
-for i in range(100, (len(list2 - 100))):
-        if list2[i] < list2[i+100] and list2[i] < list2[i-100] and list2[i] < list2[i-1] and list2[i] < list2[i+1]:
-            ints = ints + ((int(list2[i])) + 1)
-#     except:
-#         pass
-print(ints)
-
+print(f"Part 1: Sum of the risk levels: {risksum}")

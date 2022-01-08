@@ -1,6 +1,3 @@
-from collections import counter
-import re
-
 with open ("input.txt", "r") as myfile:
     data = myfile.read().splitlines()
     data.pop(1)
@@ -38,4 +35,3 @@ while tracker < 10:
 print(element)
 
 
-Counter(c.lower() for c in re.findall(r"\w", s)).most_common(1)
